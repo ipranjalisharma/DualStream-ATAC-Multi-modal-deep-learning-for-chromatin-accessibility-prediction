@@ -1,0 +1,8 @@
+torch
+numpy
+pandas
+pyfaidx
+mappy
+scipy
+tqdm
+python-docx
