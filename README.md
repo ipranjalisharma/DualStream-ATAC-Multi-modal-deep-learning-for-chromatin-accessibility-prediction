@@ -1,0 +1,2 @@
+# DualStream-ATAC-Multi-modal-deep-learning-for-chromatin-accessibility-prediction
+DualStream‑ATAC is a multi‑modal deep learning framework that regresses log2 fold‑enrichment ATAC‑seq signals from DNA sequences (1D CNN with residual+SE attention) and RNA‑seq derived Multi‑Gene Context vectors. It bridges static sequence motifs with dynamic trans‑regulatory environments to predict cell‑type‑specific chromatin accessibility. 
