@@ -2,7 +2,7 @@
 
 import os
 
-# ─── Paths (hardcoded defaults — override via CLI if needed) ─────────────────
+# Paths (hardcoded defaults — override via CLI if needed)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(BASE_DIR)
 
@@ -13,7 +13,7 @@ PATHS = {
     'cache_dir': os.path.join(BASE_DIR, 'cache'),
 }
 
-# ─── Default hyperparameters ─────────────────────────────────────────────────
+# Default hyperparameters
 DEFAULT_HYPERPARAMS = {
     'learning_rate': 0.001,
     'batch_size': 32,
@@ -26,7 +26,7 @@ DEFAULT_HYPERPARAMS = {
     'hidden_dim': 128,
 }
 
-# ─── Training configuration ─────────────────────────────────────────────────
+#  Training configuration
 TRAINING_CONFIG = {
     'early_stopping_patience': 10,
     'early_stopping_min_delta': 1e-4,
@@ -38,7 +38,7 @@ TRAINING_CONFIG = {
     'log_interval': 10,
 }
 
-# ─── Data configuration ─────────────────────────────────────────────────────
+# Data configuration 
 DATA_CONFIG = {
     'sequence_length': 1000,
     'encoding': 'onehot',
