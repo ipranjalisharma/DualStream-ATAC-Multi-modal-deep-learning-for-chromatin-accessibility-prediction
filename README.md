@@ -4,23 +4,7 @@ Welcome to the ultimate guide for the ATAC Signal Predictor project. This manual
 
 ---
 
-##  Table of Contents
-0.  [**System Installation & Dependencies**](#installation)
-1.  [**Biological Motivation**](#biological-motivation)
-2.  [**Data Architecture & Formats**](#data-architecture)
-3.  [**RNA Neighborhood: Multi-Gene Context**](#rna-neighborhood)
-4.  [**Neural Architecture Deep Dive (V6)**](#neural-architecture)
-5.  [**Mathematical Foundations & Loss**](#mathematical-foundations)
-6.  [**High-Speed Vectorized Pipeline**](#vectorized-pipeline)
-7.  [**Metric Interpretation & Biology**](#metrics)
-8.  [**Output Metadata & File Structure**](#file-structure)
-9. [**Troubleshooting & FAQ**](#troubleshooting)
-10. [**Scenario-Based Execution Guide**](#scenarios)
-11. [**Master Utility Reference (All CLI Flags)**](#utility-reference)
-
----
-
-##  0. System Installation & Dependencies
+##   System Installation & Dependencies
 
 To ensure maximum performance and reproducibility, follow the detailed setup below.
 
@@ -56,7 +40,7 @@ pip install -r requirements.txt
 
 ---
 
-##  1. Biological Motivation: The Regulatory Code
+##   Biological Motivation: The Regulatory Code
 
 ### Chromatin Accessibility
 In the nucleus of every human cell, 2 meters of DNA is packed into a tiny space. To control gene expression, the cell "opens" certain parts of this DNA to allow proteins called **Transcription Factors (TFs)** to bind. This state is known as **Chromatin Accessibility**.
@@ -70,7 +54,7 @@ By regression-modeling the signal, we can distinguish between "Strong Enhancers"
 
 ---
 
-##  2. Data Architecture: The Raw Materials
+##   Data Architecture: The Raw Materials
 
 The pipeline is designed to handle standard bioinformatics formats with zero manual preprocessing.
 
@@ -91,7 +75,7 @@ The model currently uses the **hg38 (GRCh38)** human reference. It utilizes `pyf
 
 ---
 
-##  3. RNA Neighborhood: Top-N Multi-Gene Context
+##   RNA Neighborhood: Top-N Multi-Gene Context
 
 A major innovation in this model is a **multi-dimensional context vector**.
 
@@ -113,7 +97,7 @@ Where *g_i* satisfies:
 
 ---
 
-##  4. Neural Architecture Deep Dive: ResNet-SE 
+##   Neural Architecture Deep Dive: ResNet-SE 
 
 The architecture is a **Dual-Stream Neural Network** composed of approximately **224,000** trainable parameters.
 
@@ -130,7 +114,7 @@ Processes the 1000bp DNA sequence to identify regulatory motifs.
 
 ---
 
-##  5. Mathematical Foundations
+##   Mathematical Foundations
 
 ### A. Signal Compression & Normalization
 
@@ -171,7 +155,7 @@ Where δ = 1.0 (default). This provides:
 
 ---
 
-##  6. High-Speed Vectorized Pipeline
+##   High-Speed Vectorized Pipeline
 
 ### MD5-Based Caching
 We hash `sorted(cell_names) + seed`. If you change a cell name or seed, the model rebuilds the data. Cache hits take ~0.15s.
@@ -181,9 +165,9 @@ We save caching files as **Uncompressed NumPy (.npz)**. Uncompressed data with `
 
 ---
 
-##  7. Metric Interpretation & Biology
+##   Metric Interpretation & Biology
 
-- **Pearson Correlation ($r$)**: Measures trend accuracy. **0.80+** is typical for stable V6 models.
+- **Pearson Correlation ($r$)**: Measures trend accuracy. **0.80+** is typical for stable models.
 - **R² Score**: Measures absolute accuracy. Expect **0.55 - 0.75** (achieved **0.63** on held-out cellular conditions).
 
 ### Early Stopping & Convergence
@@ -191,14 +175,14 @@ Training is governed by an Early Stopping callback (`patience=10`, `min_delta=1e
 
 ---
 
-##  8. Output Metadata & File Structure
+##   Output Metadata & File Structure
 
 ### The `norm_stats.npz` File
 **REQUIRED FOR PREDICTION.** Stores the $\mu$ and $\sigma$ from training so `predict.py` can return real signal values.
 
 ---
 
-##  9. Troubleshooting & FAQ
+##   Troubleshooting & FAQ
 
 - **Memory Error**: Reduce `--batch-size` to `512` or `256`.
 - **Cache Mismatch**: Run `rm cache/*.npz` before re-training.
@@ -206,7 +190,7 @@ Training is governed by an Early Stopping callback (`patience=10`, `min_delta=1e
 
 ---
 
-##  10. Scenario-Based Execution Guide
+##   Scenario-Based Execution Guide
 
 **Scenario A: Universal Full-Scale Model Training**
 ```bash
@@ -221,13 +205,11 @@ python train.py --conditions 0,1 --epochs 10 --batch-size 512 --lr 0.0001 --outp
 **Scenario C: Generalization Study (Cross-Cell-Type)**
 Evaluate the model on an entirely new condition not present in the training pool.
 ```bash
-python test.py --model-path final_v6_production/checkpoints/best_model.pth --conditions 5 --test-frac-cond 0.3
+python test.py --model-path final_production/checkpoints/best_model.pth --conditions 5 --test-frac-cond 0.3
 ```
-*Note: By default, test.py uses held-out chromosomes (chr8, chr9). Use `--test-frac-cond` to simulate full cell-type holdout.*
-
 ---
 
-##  11. Master Utility Reference: All CLI Flags
+##   Master Utility Reference: All CLI Flags
 
 ### `train.py` (Model Optimization)
 | Argument | Type | Default | Description |
