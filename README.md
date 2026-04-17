@@ -1,7 +1,6 @@
 #  DuATTAC (ATAC Signal Predictor): Multi-Gene Context Architecture
 
 Welcome to the ultimate guide for the ATAC Signal Predictor project. This manual provides a 360-degree view of the system, from hardware setup and biological theory to mathematical proofs and neural architecture.
-<img width="2816" height="1536" alt="DuATTAC_architecture" src="https://github.com/user-attachments/assets/2f2acbe3-8d39-433b-a42a-4d59fd157818" />
 
 ---
 
