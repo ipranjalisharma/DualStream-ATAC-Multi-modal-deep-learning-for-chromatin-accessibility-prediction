@@ -245,9 +245,10 @@ python test.py --model-path final_production/checkpoints/best_model.pth --condit
 ---
 
 ##  Performance on Human cell lines (over 400 conditions)
+
+<img width="3600" height="2100" alt="all_distribution_v_style" src="https://github.com/user-attachments/assets/2a126425-5373-4677-9224-a686a82c25fd" />
 <img width="1200" height="900" alt="roc_curve" src="https://github.com/user-attachments/assets/378a0151-0b56-44ba-91c7-a12db01a9738" />
 <img width="1200" height="900" alt="pr_curve" src="https://github.com/user-attachments/assets/f55892c2-b65c-40a9-8596-7b9af60b6f8e" />
 <img width="1200" height="900" alt="confusion_matrix" src="https://github.com/user-attachments/assets/5fb839c3-f646-499c-8900-1ea7f02df560" />
-<img width="3600" height="2100" alt="all_distribution_v_style" src="https://github.com/user-attachments/assets/2a126425-5373-4677-9224-a686a82c25fd" />
 
 **END OF MANUAL**
